@@ -1,5 +1,7 @@
-import app from "./app";
+import app from './app';
+import newAlternative from './new-alternative';
 
 export default {
-    app,
+  app,
+  newAlternative
 };

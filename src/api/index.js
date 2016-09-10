@@ -1,24 +1,38 @@
 export const fetchCriteria = () =>
     Promise.resolve([
       {
-        name: 'Formação acadêmica'
+        id: 1,
+        name: 'Formação acadêmica',
+        type: 'select'
       },
       {
-        name: 'Projetos de pesquisa'
+        id: 2,
+        name: 'Projetos de pesquisa',
+        type: 'number'
       },
       {
-        name: 'Artigos completos publicados em periódicos'
+        id: 3,
+        name: 'Artigos completos publicados em periódicos',
+        type: 'number'
       },
       {
-        name: 'Livros publicados ou edições'
+        id: 4,
+        name: 'Livros publicados ou edições',
+        type: 'number'
       },
       {
-        name: 'Trabalhos completos publicados em anais de congressos'
+        id: 5,
+        name: 'Trabalhos completos publicados em anais de congressos',
+        type: 'number'
       },
       {
-        name: 'Participação em eventos, congressos, exposições e feiras'
+        id: 6,
+        name: 'Participação em eventos, congressos, exposições e feiras',
+        type: 'number'
       },
       {
-        name: 'Organização de eventos, congressos, exposições e feiras'
+        id: 7,
+        name: 'Organização de eventos, congressos, exposições e feiras',
+        type: 'number'
       },
     ]);

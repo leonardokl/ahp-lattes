@@ -5,17 +5,30 @@ import {withRouter} from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-import Alternatives from './alternatives';
+
 import Sidebar from 'ui/components/sidebar';
+import Alternatives from './alternatives';
+import AddAlternatives from './add-alternatives';
 import Results from './results';
 import styles from './home.scss';
 
 class App extends React.Component {
   render() {
+    const {alternatives, results} = this.props.app;
+
     return (
       <div className={styles.container}>
-        <Alternatives alternatives={this.props.app.alternatives}/>
-        <Results results={this.props.app.results}/>
+        {!alternatives.length ?
+          <AddAlternatives onClickAdicionar={this.props.onClickAdicionar}/> :
+          [
+            <Alternatives
+              alternatives={alternatives}
+              onClickRemoveAlternative={this.props.onClickRemoveAlternative}
+              onClickAdicionar={this.props.onClickAdicionar}
+            />,
+            <Results results={results}/>
+          ]
+        }
       </div>
     );
   }
@@ -26,6 +39,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  onClickRemoveAlternative: (index) => {console.log('onClickRemoveAlternative', index);
+    dispatch(actions.removeAlternative(index));
+  },
+  onClickAdicionar: () => {
+    dispatch(actions.setNewAlternativeShowModal(true));
+  },
   onWillMount: () => {
     dispatch(actions.fetchCriteria());
   }

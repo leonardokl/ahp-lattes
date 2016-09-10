@@ -6,15 +6,15 @@ const Results = (props) => {
   if (!props.results.length) {
     return (
       <Paper className={styles.container} zDepth={1} rounded={false}>
-        <div className={styles.noResults}>Adicione mais alternativas para visualizar o resultado</div>
+        <div className={styles.noResults}>Adicione mais uma alternativa para visualizar o resultado</div>
       </Paper >
     );
   }
   return (
     <Paper className={styles.container} zDepth={1} rounded={false}>
-      Resultado
+      <div className={styles.noResults}>Resultado</div>
     </Paper>
-  )
+  );
 };
 
 Results.propTypes = {

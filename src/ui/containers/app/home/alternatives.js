@@ -15,11 +15,15 @@ const Alternatives = (props) => (
     <List>
       <div>
         <Subheader>Alternativas
-          <FloatingButton />
+          <FloatingButton onClick={props.onClickAdicionar}/>
         </Subheader>
       </div>
       {props.alternatives.map((item, index) =>
-        <AlternativesItem key={index}/>
+        <AlternativesItem
+          key={index}
+          label={item.name}
+          onClickRemove={props.onClickRemoveAlternative.bind(this, index)}
+        />
       )}
     </List>
   </Paper>
@@ -27,10 +31,7 @@ const Alternatives = (props) => (
 
 Alternatives.propTypes = {
   alternatives: React.PropTypes.array,
-};
-
-Alternatives.defaultProps = {
-  alternatives: [1, 2, 3]
+  onClickAdicionar: React.PropTypes.func
 };
 
 module.exports = Alternatives;

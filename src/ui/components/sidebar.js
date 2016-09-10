@@ -27,6 +27,7 @@ const Sidebar = (props) => (
       />
       {props.items.map((item, index) =>
         <Toggle
+          key={index}
           label={item.name}
           labelPosition="right"
           className={styles.toggle}

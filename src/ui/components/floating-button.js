@@ -7,6 +7,7 @@ const FloatingButton = (props) => (
     mini
     style={{display: 'flex', float: 'right', marginRight: 12}}
     zDepth={1}
+    onClick={props.onClick}
   >
     <ContentAdd />
   </FloatingActionButton>

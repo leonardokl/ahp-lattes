@@ -7,17 +7,19 @@ import Avatar from 'material-ui/Avatar';
 
 const AlternativesItem = (props) => (
   <ListItem
-    primaryText="Brendan Lim"
+    primaryText={props.label}
     leftAvatar={<Avatar src="http://semantic-ui.com/images/avatar2/small/eve.png" />}
-    rightIcon={<CommunicationChatBubble/>}
+    rightIcon={<CommunicationChatBubble onClick={props.onClickRemove}/>}
   />
 );
 
 AlternativesItem.propTypes = {
+  label: React.PropTypes.string,
   onClick: React.PropTypes.func,
 };
 
 AlternativesItem.defaultProps = {
+  label: '--',
   onClick: () => 1
 };
 
