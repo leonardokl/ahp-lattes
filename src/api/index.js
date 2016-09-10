@@ -1,7 +1,7 @@
 export const fetchCriteria = () =>
     Promise.resolve([
       {
-        name: 'Formação acadêmica/titulação'
+        name: 'Formação acadêmica'
       },
       {
         name: 'Projetos de pesquisa'
@@ -10,7 +10,7 @@ export const fetchCriteria = () =>
         name: 'Artigos completos publicados em periódicos'
       },
       {
-        name: 'Livros publicados/organizados ou edições'
+        name: 'Livros publicados ou edições'
       },
       {
         name: 'Trabalhos completos publicados em anais de congressos'

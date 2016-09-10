@@ -1,13 +1,13 @@
 const initialState = {
   criteria: [],
-  alternatives: [],
+  alternatives: [1, 2],
   preferences: [],
-  result: []
+  results: []
 };
 
 const app = (state = initialState, action) => {
   switch (action.type) {
-    case 'FETCH_CRITERIA':console.log("FETCH_CRITERIA");
+  case 'FETCH_CRITERIA':
     return {...state, criteria: action.response};
   }
 

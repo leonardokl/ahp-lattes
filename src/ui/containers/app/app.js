@@ -16,9 +16,10 @@ class App extends React.Component {
     const {pathname} = this.props.location;
 
     switch(pathname) {
+    case 'home':
     case '/home':
       return {label:'Preferências', link: 'preferencias'};
-
+    case 'preferencias':
     case '/preferencias':
       return {label: 'Voltar', link: 'home'};
     }

@@ -9,10 +9,7 @@ class Preferences extends React.Component {
   render() {
     return (
       <div style={{margin: 20}}>
-        <PreferencesItem />
-        <PreferencesItem />
-        <PreferencesItem />
-        <PreferencesItem />
+        {[1,2,3,4].map(item => <PreferencesItem key={item}/>)}
       </div>
     );
   }

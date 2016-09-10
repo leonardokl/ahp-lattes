@@ -2,6 +2,17 @@ import React from 'react';
 import {Link} from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
+import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/navigation/arrow-back';
+import ActionSettings from 'material-ui/svg-icons/action/settings';
+
+const getIcon = (link) => {
+  switch (link) {
+  case 'home':
+    return (<HardwareKeyboardArrowLeft />);
+  case 'preferencias':
+    return (<ActionSettings />);
+  }
+};
 
 const Topbar = (props) => (
   <AppBar
@@ -10,7 +21,11 @@ const Topbar = (props) => (
     showMenuIconButton={false}
     iconElementRight={
       <Link to={props.action.link}>
-        <RaisedButton style={{marginTop: '4px'}} label={props.action.label} />
+        <RaisedButton
+          icon={getIcon(props.action.link)}
+          label={props.action.label}
+          style={{marginTop: '4px'}}
+        />
       </Link>
     }
   />

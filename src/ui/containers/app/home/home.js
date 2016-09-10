@@ -5,15 +5,17 @@ import {withRouter} from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
-
+import Alternatives from './alternatives';
 import Sidebar from 'ui/components/sidebar';
+import Results from './results';
+import styles from './home.scss';
 
 class App extends React.Component {
   render() {
     return (
-      <div style={{margin: 20}}>
-        <Paper style={{height: 100}} zDepth={1} rounded={false} />
-        <Paper style={{height: 100}} zDepth={1} rounded={false} />
+      <div className={styles.container}>
+        <Alternatives alternatives={this.props.app.alternatives}/>
+        <Results results={this.props.app.results}/>
       </div>
     );
   }
