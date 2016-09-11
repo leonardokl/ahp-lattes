@@ -1,6 +1,11 @@
 # AHP LATTES
 AHP application using React and Redux
 
-## Develop mode
+## Docker
+docker pull leonardokl/ahp-lattes
+docker run -d -P leonardokl/ahp-lattes
+
+## Development mode
 npm install
 npm start
+localhost:9091
