@@ -21,6 +21,16 @@ const app = (state = initialState, action) => {
     ]};
   case 'GENERATE_PREFERENCES':
     return {...state, preferences: action.response};
+  case 'UPDATE_PREFERENCE':
+    let preference = state.preferences[action.index];
+
+    preference.matrix[action.cordinates.x][action.cordinates.y] = action.value;
+
+    return {...state, preferences: [
+      ...state.preferences.slice(0, action.index),
+      preference,
+      ...state.preferences.slice(action.index + 1)
+    ]};
   case 'GENERATE_RESULTS':
     return {...state, results: action.response};
   }

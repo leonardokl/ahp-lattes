@@ -1,31 +1,43 @@
 import randomMC from 'random-material-color';
 import * as API from 'api';
+const DEFAULT_PREFERENCE_VALUE = '1';
 
-const _convertArrayElementsToOne = (array) => array.map(() => 1);
+const _createDefaultArray = (size) => {
+  let array = [];
 
+  for (let i = 0; i < size; i++) {
+    array.push(DEFAULT_PREFERENCE_VALUE);
+  }
+
+  return array;
+};
+
+const _createQuadraticMatrix = (size) => {
+  let matrix = [];
+
+  for (let i = 0; i < size; i++) {
+    matrix.push(_createDefaultArray(size));
+  }
+
+  return matrix;
+};
+
+/* description: mounting a matrix for every criterion,
+ * the size of each matrix is equal the number of alternatives
+ * sample: return
+ * [[1, 2, 1]
+ * [1, 1, 1]
+ * [1, 1, 1]]
+*/
 const _getPreferencesFromCriteriaAndAlternatives = (criteria, alternatives) => {
-  const alternativesNumber = alternatives.length;
-  let preferences = [];
-
-  /* description: mounting a matriz for every criterion,
-   * the size of each matriz is equal the number of alternatives
-   * sample: return
-   * [[1, 2, 1]
-   * [1, 1, 1]
-   * [1, 1, 1]]
-  */
-  preferences = criteria.map(criterion => {
-    criterion.matriz = [];
-
-    alternatives.forEach(() =>
-      criterion.matriz.push(_convertArrayElementsToOne(alternatives))
-    );
+  let preferences = criteria.map(criterion => {
+    criterion.matrix = _createQuadraticMatrix(alternatives.length);
 
     return criterion;
   });
 
   return preferences;
-}
+};
 
 export const fetchCriteria = () => (dispatch) => {
   API.fetchCriteria()
@@ -64,6 +76,10 @@ export const generatePreferences = () => (dispatch, getState) => {
     response: preferences
   });
   dispatch(generateResults());
+};
+
+export const updatePreference = ({index, cordinates, value}) => (dispatch) => {
+  dispatch({type: 'UPDATE_PREFERENCE', index, cordinates, value});
 };
 
 export const generateResults = () => (dispatch, getState) => {

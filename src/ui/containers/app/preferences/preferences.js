@@ -12,7 +12,13 @@ class Preferences extends React.Component {
     return (
       <div style={{margin: 20}}>
         {preferences.map((item, index) =>
-          <PreferencesItem key={index} preference={item} alternatives={alternatives}/>
+          <PreferencesItem
+            key={index}
+            preference={item}
+            preferenceIndex={index}
+            alternatives={alternatives}
+            onChangePreferenceValue={this.props.onChangePreference}
+          />
         )}
       </div>
     );
@@ -24,6 +30,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  onChangePreference: (options) => {
+    dispatch(actions.updatePreference(options));
+  },
   onWillMount: () => {
     dispatch(actions.fetchCriteria());
   }

@@ -22,7 +22,18 @@ const MaterialTable = (props) => (
           <TableHeaderColumn>{alternative.name}</TableHeaderColumn>
           {props.alternatives.map((alternative, index2) =>
             <TableRowColumn key={index2}>
-              <Select disabled={!!(index1 == index2)}/>
+              <Select
+                disabled={!!(index1 == index2)}
+                value={props.preference.matrix[index1][index2]}
+                onChange={(evt, index, value) => props.onChangeSelect({
+                  value,
+                  cordinates: {
+                    x: index1,
+                    y: index2
+                  },
+                  index: props.preferenceIndex
+                })}
+              />
             </TableRowColumn>
           )}
         </TableRow>
@@ -32,11 +43,8 @@ const MaterialTable = (props) => (
 );
 
 MaterialTable.propTypes = {
-  items: React.PropTypes.array,
-};
-
-MaterialTable.defaultProps = {
-  items: []
+  alternatives: React.PropTypes.array,
+  preference: React.PropTypes.object,
 };
 
 module.exports = MaterialTable;

@@ -5,12 +5,19 @@ import styles from './preferences-item.scss';
 
 const PreferencesItem = (props) => (
   <Paper className={styles.paper} zDepth={2} rounded={false}>
-    <Table title={props.preference.name} alternatives={props.alternatives}/>
+    <Table
+      alternatives={props.alternatives}
+      title={props.preference.name}
+      preference={props.preference}
+      preferenceIndex={props.preferenceIndex}
+      onChangeSelect={props.onChangePreferenceValue}
+    />
   </Paper>
 );
 
 PreferencesItem.propTypes = {
   items: React.PropTypes.array,
+  onChangeSelect: React.PropTypes.func
 };
 
 PreferencesItem.defaultProps = {
