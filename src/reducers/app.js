@@ -19,6 +19,8 @@ const app = (state = initialState, action) => {
       ...state.alternatives,
       action.data
     ]};
+  case 'GENERATE_PREFERENCES':
+    return {...state, preferences: action.response};
   case 'GENERATE_RESULTS':
     return {...state, results: action.response};
   }

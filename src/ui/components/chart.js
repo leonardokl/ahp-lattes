@@ -28,25 +28,29 @@ class Chart extends React.Component {
     };
   }
 
-  createChart = () => {
-    this.chart = new ChartJS(this.el, {
+  get config() {
+    return {
       type: 'doughnut',
       data: this.data,
       options
-    });
+    };
+  }
+
+  createChart = () => {
+    this.chart = new ChartJS(this.el, this.config);
   }
 
   updateChart = () => {
     this.chart.destroy();
-    this.chart = new ChartJS(this.el, {
-      type: 'doughnut',
-      data: this.data,
-      options
-    });
+    this.chart = new ChartJS(this.el, this.config);
   }
 
   componentDidMount() {
     this.createChart();
+  }
+
+  componentWillUnmount() {
+    this.chart.destroy();
   }
 
   shouldComponentUpdate(nextProps) {

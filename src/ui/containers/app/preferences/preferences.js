@@ -2,14 +2,18 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as actions from 'actions';
 import {withRouter} from 'react-router';
-import AppBar from 'material-ui/AppBar';
+
 import PreferencesItem from './preferences-item';
 
 class Preferences extends React.Component {
   render() {
+    const {alternatives, preferences} = this.props.app;
+
     return (
       <div style={{margin: 20}}>
-        {[1,2,3,4].map(item => <PreferencesItem key={item}/>)}
+        {preferences.map((item, index) =>
+          <PreferencesItem key={index} preference={item} alternatives={alternatives}/>
+        )}
       </div>
     );
   }

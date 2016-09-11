@@ -4,8 +4,8 @@ import Table from 'ui/components/table';
 import styles from './preferences-item.scss';
 
 const PreferencesItem = (props) => (
-  <Paper className={styles.paper} zDepth={1} rounded={false}>
-    <Table />
+  <Paper className={styles.paper} zDepth={2} rounded={false}>
+    <Table title={props.preference.name} alternatives={props.alternatives}/>
   </Paper>
 );
 
