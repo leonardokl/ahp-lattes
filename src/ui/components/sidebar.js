@@ -5,15 +5,6 @@ import MenuItem from 'material-ui/MenuItem';
 import Toggle from 'material-ui/Toggle';
 import styles from './sidebar.scss';
 
-// const styles = {
-//   block: {
-//     maxWidth: 250,
-//   },
-//   toggle: {
-//     marginBottom: 16,
-//   },
-// };
-
 const Sidebar = (props) => (
   <Drawer containerStyle={{overflowX: 'hidden'}} width={200} open={true} >
     <AppBar title='Critérios' showMenuIconButton={false}/>

@@ -22,11 +22,12 @@ class App extends React.Component {
           <AddAlternatives onClickAdicionar={this.props.onClickAdicionar}/> :
           [
             <Alternatives
+              key={1}
               alternatives={alternatives}
               onClickRemoveAlternative={this.props.onClickRemoveAlternative}
               onClickAdicionar={this.props.onClickAdicionar}
             />,
-            <Results results={results}/>
+            <Results key={2} results={results}/>
           ]
         }
       </div>

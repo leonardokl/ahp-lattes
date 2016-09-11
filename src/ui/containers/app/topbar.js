@@ -20,6 +20,7 @@ const Topbar = (props) => (
     style={{position: 'fixed'}}
     showMenuIconButton={false}
     iconElementRight={
+      (!props.disablePreferences || props.action.link == 'home') &&
       <Link to={props.action.link}>
         <RaisedButton
           icon={getIcon(props.action.link)}

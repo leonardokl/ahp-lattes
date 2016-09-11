@@ -11,7 +11,7 @@ import AlternativesItem from './alternatives-item';
 import FloatingButton from 'ui/components/floating-button';
 
 const Alternatives = (props) => (
-  <Paper style={{width: '100%', maxWidth: 400}} zDepth={1}>
+  <Paper style={{width: '100%', maxWidth: 400, height: 'auto'}} zDepth={1}>
     <List>
       <div>
         <Subheader>Alternativas

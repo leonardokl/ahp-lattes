@@ -1,3 +1,4 @@
+import randomMC from 'random-material-color';
 import * as API from 'api';
 
 export const fetchCriteria = () => (dispatch) => {
@@ -27,6 +28,13 @@ export const generateResults = () => (dispatch, getState) => {
     return dispatch({type: 'GENERATE_RESULTS', response: []});
   }
 
-  return dispatch({type: 'GENERATE_RESULTS', response: [1]});
+  return dispatch({
+    type: 'GENERATE_RESULTS',
+    response: alternatives.map(alternative => ({
+      label: alternative.name,
+      value: Math.floor(Math.random() * 9),
+      color: randomMC.getColor()
+    }))
+  });
 
 };

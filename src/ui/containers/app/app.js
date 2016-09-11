@@ -28,7 +28,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Topbar action={this.getTopBarAction()}/>
+        <Topbar
+          action={this.getTopBarAction()}
+          disablePreferences={!!(this.props.app.alternatives.length < 2)}
+        />
         <div>
           <Sidebar items={this.props.app.criteria}/>
           <div className={styles.childrenContainer}>
