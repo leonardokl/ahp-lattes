@@ -8,7 +8,11 @@ const options = [
 ];
 
 const Select = (props) => (
-  <SelectField value={props.value} onChange={props.onChange}>
+  <SelectField
+    disabled={props.disabled}
+    value={props.value}
+    onChange={props.onChange}
+  >
     {options.map((value, index) =>
       <MenuItem key={index} value={value} primaryText={value} />
     )}
