@@ -35,4 +35,4 @@ export const fetchCriteria = () =>
         name: 'Organização de eventos, congressos, exposições e feiras',
         type: 'number'
       },
-    ]);
+    ])

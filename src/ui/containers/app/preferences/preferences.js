@@ -1,13 +1,13 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import * as actions from 'actions';
-import {withRouter} from 'react-router';
+import React from 'react'
+import {connect} from 'react-redux'
+import * as actions from 'actions'
+import {withRouter} from 'react-router'
 
-import PreferencesItem from './preferences-item';
+import PreferencesItem from './preferences-item'
 
 class Preferences extends React.Component {
   render() {
-    const {alternatives, preferences} = this.props.app;
+    const {alternatives, preferences} = this.props.app
 
     return (
       <div style={{margin: 20}}>
@@ -21,21 +21,21 @@ class Preferences extends React.Component {
           />
         )}
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state) => ({
   app: state.app,
-});
+})
 
 const mapDispatchToProps = (dispatch) => ({
   onChangePreference: (options) => {
-    dispatch(actions.updatePreference(options));
+    dispatch(actions.updatePreference(options))
   },
   onWillMount: () => {
-    dispatch(actions.fetchCriteria());
+    dispatch(actions.fetchCriteria())
   }
-});
+})
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Preferences));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Preferences))

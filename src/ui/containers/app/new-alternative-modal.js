@@ -1,27 +1,27 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import * as actions from 'actions';
-import {withRouter, Link} from 'react-router';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
+import React from 'react'
+import {connect} from 'react-redux'
+import * as actions from 'actions'
+import {withRouter, Link} from 'react-router'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
 
 class NewAlternativeModal extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = this.initialState;
+    this.state = this.initialState
   }
 
   componentWillMount() {
-      this.setState(this.initialState);
+      this.setState(this.initialState)
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.newAlternative.showModal !== this.props.newAlternative.showModal ||
       nextProps.app.criteria !== this.props.app.criteria) {
-      this.setState(this.initialState);
+      this.setState(this.initialState)
     }
   }
 
@@ -30,36 +30,36 @@ class NewAlternativeModal extends React.Component {
       form: {
         name: '',
         criteria: this.props.app.criteria.map((criterion) => {
-          criterion.value = '';
-          return criterion;
+          criterion.value = ''
+          return criterion
         })
       }
-    });
+    })
   }
 
   handleChangeName = (name) => {
-    let {form} = this.state;
+    let {form} = this.state
 
-    form.name = name;
-    this.setState({form});
+    form.name = name
+    this.setState({form})
   }
 
   handleChangeCriterion = (value, index) => {
-    let {form} = this.state;
+    let {form} = this.state
 
-    form.criteria[index].value = value;
-    this.setState({form});
+    form.criteria[index].value = value
+    this.setState({form})
   }
 
   hasValue(item) {
-    return item.value !== '';
+    return item.value !== ''
   }
 
   handleClickSalvar = () => {
-    const {criteria, name} = this.state.form;
+    const {criteria, name} = this.state.form
 
     if (criteria.every(this.hasValue) && name !== '') {
-      this.props.onCreateAlternative(this.state.form);
+      this.props.onCreateAlternative(this.state.form)
     }
   }
 
@@ -107,22 +107,22 @@ class NewAlternativeModal extends React.Component {
         )}
 
       </Dialog>
-    );
+    )
   }
 }
 
 const mapStateToProps = (state) => ({
   app: state.app,
   newAlternative: state.newAlternative,
-});
+})
 
 const mapDispatchToProps = (dispatch) => ({
   onCreateAlternative: (data) => {
-    dispatch(actions.createAlternative(data));
+    dispatch(actions.createAlternative(data))
   },
   onRequestCloseModal: () => {
-    dispatch(actions.setNewAlternativeShowModal(false));
+    dispatch(actions.setNewAlternativeShowModal(false))
   }
-});
+})
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewAlternativeModal));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewAlternativeModal))

@@ -1,7 +1,7 @@
-import Main from 'ui/main';
-import App from 'ui/containers/app/';
-import Home from 'ui/containers/app/home/';
-import Preferences from 'ui/containers/app/preferences/';
+import Main from 'ui/main'
+import App from 'ui/containers/app/'
+import Home from 'ui/containers/app/home/'
+import Preferences from 'ui/containers/app/preferences/'
 
 const routes = {
   component: Main,
@@ -24,6 +24,6 @@ const routes = {
       ]
     }
   ]
-};
+}
 
-module.exports = routes;
+module.exports = routes

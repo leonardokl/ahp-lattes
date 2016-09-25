@@ -1,7 +1,7 @@
-import React from 'react';
-import Select from './select';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-import TableTitle from './table-title';
+import React from 'react'
+import Select from './select'
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
+import TableTitle from './table-title'
 
 const MaterialTable = (props) => (
   <Table>
@@ -40,11 +40,11 @@ const MaterialTable = (props) => (
       )}
     </TableBody>
   </Table>
-);
+)
 
 MaterialTable.propTypes = {
   alternatives: React.PropTypes.array,
   preference: React.PropTypes.object,
-};
+}
 
-module.exports = MaterialTable;
+module.exports = MaterialTable

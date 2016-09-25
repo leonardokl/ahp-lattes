@@ -1,18 +1,18 @@
-import React from 'react';
-import {Link} from 'react-router';
-import AppBar from 'material-ui/AppBar';
-import RaisedButton from 'material-ui/RaisedButton';
-import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/navigation/arrow-back';
-import ActionSettings from 'material-ui/svg-icons/action/settings';
+import React from 'react'
+import {Link} from 'react-router'
+import AppBar from 'material-ui/AppBar'
+import RaisedButton from 'material-ui/RaisedButton'
+import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/navigation/arrow-back'
+import ActionSettings from 'material-ui/svg-icons/action/settings'
 
 const getIcon = (link) => {
   switch (link) {
   case 'home':
-    return (<HardwareKeyboardArrowLeft />);
+    return (<HardwareKeyboardArrowLeft />)
   case 'preferencias':
-    return (<ActionSettings />);
+    return (<ActionSettings />)
   }
-};
+}
 
 const Topbar = (props) => (
   <AppBar
@@ -30,14 +30,14 @@ const Topbar = (props) => (
       </Link>
     }
   />
-);
+)
 
 Topbar.propTypes = {
   items: React.PropTypes.array,
-};
+}
 
 Topbar.defaultProps = {
   items: []
-};
+}
 
-module.exports = Topbar;
+module.exports = Topbar

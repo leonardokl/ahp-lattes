@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import ChartJS from 'chart.js'
 
 const options = {
@@ -14,18 +14,18 @@ const options = {
 
 class Chart extends React.Component {
   get data() {
-    const labels = this.props.data.map(data => data.label);
+    const labels = this.props.data.map(data => data.label)
     const datasets = [
       {
         data: this.props.data.map(data => data.value),
         backgroundColor: this.props.data.map(data => data.color)
       }
-    ];
+    ]
 
     return {
       labels,
       datasets
-    };
+    }
   }
 
   get config() {
@@ -33,32 +33,32 @@ class Chart extends React.Component {
       type: 'doughnut',
       data: this.data,
       options
-    };
+    }
   }
 
   createChart = () => {
-    this.chart = new ChartJS(this.el, this.config);
+    this.chart = new ChartJS(this.el, this.config)
   }
 
   updateChart = () => {
-    this.chart.destroy();
-    this.chart = new ChartJS(this.el, this.config);
+    this.chart.destroy()
+    this.chart = new ChartJS(this.el, this.config)
   }
 
   componentDidMount() {
-    this.createChart();
+    this.createChart()
   }
 
   componentWillUnmount() {
-    this.chart.destroy();
+    this.chart.destroy()
   }
 
   shouldComponentUpdate(nextProps) {
-    return !!(nextProps.data !== this.props.data);
+    return !!(nextProps.data !== this.props.data)
   }
 
   componentDidUpdate() {
-    this.updateChart();
+    this.updateChart()
   }
 
   render() {
@@ -68,8 +68,8 @@ class Chart extends React.Component {
         width={400}
         height={400}
       />
-    );
+    )
   }
 }
 
-module.exports = Chart;
+module.exports = Chart

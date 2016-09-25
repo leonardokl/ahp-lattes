@@ -1,9 +1,9 @@
-import React from 'react';
-import Paper from 'material-ui/Paper';
-import RaisedButton from 'material-ui/RaisedButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import React from 'react'
+import Paper from 'material-ui/Paper'
+import RaisedButton from 'material-ui/RaisedButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 
-import styles from './add-alternatives.scss';
+import styles from './add-alternatives.scss'
 
 const Results = (props) => (
   <Paper className={styles.container} zDepth={2} rounded={false}>
@@ -18,14 +18,14 @@ const Results = (props) => (
       />
     </div>
   </Paper >
-);
+)
 
 Results.propTypes = {
   onClickAdicionar: React.PropTypes.func,
-};
+}
 
 Results.defaultProps = {
   onClickAdicionar: () => 1
-};
+}
 
-module.exports = Results;
+module.exports = Results

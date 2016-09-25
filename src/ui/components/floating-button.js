@@ -1,6 +1,6 @@
-import React from 'react';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import React from 'react'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import ContentAdd from 'material-ui/svg-icons/content/add'
 
 const FloatingButton = (props) => (
   <FloatingActionButton
@@ -11,14 +11,14 @@ const FloatingButton = (props) => (
   >
     <ContentAdd />
   </FloatingActionButton>
-);
+)
 
 FloatingButton.propTypes = {
   onClick: React.PropTypes.func,
-};
+}
 
 FloatingButton.defaultProps = {
   onClick: () => 1
-};
+}
 
-module.exports = FloatingButton;
+module.exports = FloatingButton
