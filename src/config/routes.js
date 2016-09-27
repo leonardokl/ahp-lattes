@@ -1,6 +1,7 @@
 import Main from 'ui/main'
 import App from 'ui/containers/app/'
 import Home from 'ui/containers/app/home/'
+import Criteria from 'ui/containers/app/criteria'
 import Preferences from 'ui/containers/app/preferences/'
 
 const routes = {
@@ -19,7 +20,7 @@ const routes = {
         },
         {
           path: 'preferencias',
-          component: Preferences,
+          component: Criteria,
         }
       ]
     }

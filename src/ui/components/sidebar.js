@@ -7,7 +7,12 @@ import styles from './sidebar.scss'
 
 const Sidebar = (props) => (
   <Drawer containerStyle={{overflowX: 'hidden'}} width={200} open={true} >
-    <AppBar title='Critérios' showMenuIconButton={false}/>
+    <AppBar
+      style={{backgroundColor: 'white'}}
+      title='AHP Lattes'
+      titleStyle={{color: '#81797D'}}
+      showMenuIconButton={false}
+    />
     <div className={styles.togglesContainer}>
       <Toggle
         label='Todos'

@@ -1,26 +1,26 @@
-import randomMC from 'random-material-color';
-import * as API from 'api';
-const DEFAULT_PREFERENCE_VALUE = '1';
+import randomMC from 'random-material-color'
+import * as API from 'api'
+const DEFAULT_PREFERENCE_VALUE = 1
 
 const _createDefaultArray = (size) => {
-  let array = [];
+  let array = []
 
   for (let i = 0; i < size; i++) {
-    array.push(DEFAULT_PREFERENCE_VALUE);
+    array.push(DEFAULT_PREFERENCE_VALUE)
   }
 
-  return array;
-};
+  return array
+}
 
 const _createQuadraticMatrix = (size) => {
-  let matrix = [];
+  let matrix = []
 
   for (let i = 0; i < size; i++) {
-    matrix.push(_createDefaultArray(size));
+    matrix.push(_createDefaultArray(size))
   }
 
-  return matrix;
-};
+  return matrix
+}
 
 /* description: mounting a matrix for every criterion,
  * the size of each matrix is equal the number of alternatives
@@ -31,63 +31,72 @@ const _createQuadraticMatrix = (size) => {
 */
 const _getPreferencesFromCriteriaAndAlternatives = (criteria, alternatives) => {
   let preferences = criteria.map(criterion => {
-    criterion.matrix = _createQuadraticMatrix(alternatives.length);
+    criterion.matrix = _createQuadraticMatrix(alternatives.length)
 
-    return criterion;
-  });
+    return criterion
+  })
 
-  return preferences;
-};
+  return preferences
+}
+
+const createCriteriaWeigthMatrix = (criteria) => (dispatch) => {
+  const criteriaWeightMatrix = _createQuadraticMatrix(criteria.length)
+
+  dispatch({type: 'CREATE_CRITERIA_WEIGTH_MATRIX', matrix: criteriaWeightMatrix})
+}
 
 export const fetchCriteria = () => (dispatch) => {
   API.fetchCriteria()
-    .then(response => dispatch({type: 'FETCH_CRITERIA', response}));
-};
+    .then(response => {
+      dispatch({type: 'FETCH_CRITERIA', response})
+      dispatch(createCriteriaWeigthMatrix(response))
+    })
+}
 
 export const setNewAlternativeShowModal = (data) => (dispatch) => {
-  dispatch({type: 'SET_NEW_ALTERNATIVE_SHOW_MODAL', data});
-};
+  dispatch({type: 'SET_NEW_ALTERNATIVE_SHOW_MODAL', data})
+}
 
 export const removeAlternative = (index) => (dispatch) => {
-  dispatch({type: 'REMOVE_ALTERNATIVE', index});
-  dispatch(generatePreferences());
-};
+  dispatch({type: 'REMOVE_ALTERNATIVE', index})
+  dispatch(generatePreferences())
+}
 
 export const createAlternative = (data) => (dispatch) => {
-  dispatch({type: 'CREATE_ALTERNATIVE', data});
-  dispatch(generatePreferences());
-};
+  dispatch({type: 'CREATE_ALTERNATIVE', data})
+  dispatch(generatePreferences())
+}
 
 
 export const generatePreferences = () => (dispatch, getState) => {
-  const state = getState();
-  const {alternatives, criteria} = state.app;
-  let preferences = [];
+  const state = getState()
+  const {alternatives, criteria} = state.app
+  let preferences = []
 
   if (alternatives.length < 2) {
-    dispatch({type: 'GENERATE_PREFERENCES', response: []});
-    dispatch(generateResults());
-    return;
+    dispatch({type: 'GENERATE_PREFERENCES', response: []})
+    dispatch(generateResults())
+    return
   }
 
-  preferences = _getPreferencesFromCriteriaAndAlternatives(criteria, alternatives);
+  preferences = _getPreferencesFromCriteriaAndAlternatives(criteria, alternatives)
   dispatch({
     type: 'GENERATE_PREFERENCES',
     response: preferences
-  });
-  dispatch(generateResults());
-};
+  })
+  dispatch(generateResults())
+}
 
 export const updatePreference = ({index, cordinates, value}) => (dispatch) => {
-  dispatch({type: 'UPDATE_PREFERENCE', index, cordinates, value});
-};
+  dispatch({type: 'UPDATE_PREFERENCE', index, cordinates, value})
+}
 
 export const generateResults = () => (dispatch, getState) => {
-  const state = getState();
-  const {alternatives} = state.app;
+  const state = getState()
+  const {alternatives} = state.app
 
   if (alternatives.length < 2) {
-    return dispatch({type: 'GENERATE_RESULTS', response: []});
+    return dispatch({type: 'GENERATE_RESULTS', response: []})
   }
 
   return dispatch({
@@ -97,5 +106,5 @@ export const generateResults = () => (dispatch, getState) => {
       value: Math.floor(Math.random() * 9),
       color: randomMC.getColor()
     }))
-  });
-};
+  })
+}

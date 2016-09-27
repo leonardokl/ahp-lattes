@@ -12,7 +12,7 @@ module.exports = {
 
     entry: {
         bundle: [
-            './src/router.js',
+            './src/index.js',
             'webpack/hot/dev-server',
         ],
     },

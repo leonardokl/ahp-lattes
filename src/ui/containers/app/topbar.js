@@ -14,9 +14,19 @@ const getIcon = (link) => {
   }
 }
 
+const getTitle = (link) => {
+  switch (link) {
+  case 'home':
+    return 'Preferências'
+  case 'preferencias':
+    return 'Home'
+  }
+}
+
 const Topbar = (props) => (
   <AppBar
-    title='Seleção'
+    title={getTitle(props.action.link)}
+    titleStyle={{paddingLeft: 215}}
     style={{position: 'fixed'}}
     showMenuIconButton={false}
     iconElementRight={
