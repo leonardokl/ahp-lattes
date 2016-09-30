@@ -8,6 +8,7 @@ import CriteriaItem from './criteria-item'
 class Criteria extends React.Component {
   createComparisons = () => {
     const {criteria} = this.props.app
+    const {matrix} = this.props.criteriaWeigths
     let comparisons = []
 
     criteria.forEach((criterion, index) => {
@@ -15,16 +16,26 @@ class Criteria extends React.Component {
         for (let i = index + 1; i < criteria.length; i++) {
           comparisons.push({
             firstOption: {
-              name: criterion.name
+              name: criterion.name,
+              value: matrix[index][i],
+              cordinate: {
+                x: index,
+                y: i
+              }
             },
             secondOption: {
-              name: criteria[i].name
+              name: criteria[i].name,
+              value: matrix[i][index],
+              cordinate: {
+                x: i,
+                y: index
+              }
             }
           })
         }
       }
     })
-
+    comparisons[0].secondOption.value = 2
     return comparisons
   }
 
@@ -35,7 +46,11 @@ class Criteria extends React.Component {
       <div style={{margin: 20}}>
         <div style={{display: 'flex', flexWrap: 'wrap'}}>
           {this.createComparisons().map((comparison, index) =>
-            <CriteriaItem key={index} comparison={comparison}/>
+            <CriteriaItem
+              key={index}
+              comparison={comparison}
+              onChangeComparison={this.props.onChangeCriteriaWeigth}
+            />
           )}
         </div>
       </div>
@@ -45,10 +60,13 @@ class Criteria extends React.Component {
 
 const mapStateToProps = (state) => ({
   app: state.app,
-  criteriaWeigths: state.criteriaWeights
+  criteriaWeigths: state.criteriaWeigths
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  onChangeCriteriaWeigth: (criteriaComparison) => {
+    dispatch(actions.updateCriteriaWeigth(criteriaComparison))
+  },
   onChangePreference: (options) => {
     dispatch(actions.updatePreference(options))
   },

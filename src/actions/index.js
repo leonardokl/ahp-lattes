@@ -91,6 +91,10 @@ export const updatePreference = ({index, cordinates, value}) => (dispatch) => {
   dispatch({type: 'UPDATE_PREFERENCE', index, cordinates, value})
 }
 
+export const updateCriteriaWeigth = (criteriaComparison) => (dispatch) => {
+  dispatch({type: 'UPDATE_CRITERIA_WEIGTH'})
+}
+
 export const generateResults = () => (dispatch, getState) => {
   const state = getState()
   const {alternatives} = state.app
