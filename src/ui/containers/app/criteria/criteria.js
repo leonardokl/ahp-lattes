@@ -4,6 +4,7 @@ import * as actions from 'actions'
 import {withRouter} from 'react-router'
 
 import CriteriaItem from './criteria-item'
+import Ghost from './ghost'
 
 class Criteria extends React.Component {
   createComparisons = () => {
@@ -17,7 +18,7 @@ class Criteria extends React.Component {
           comparisons.push({
             firstOption: {
               name: criterion.name,
-              value: matrix[index][i].toFixed(2),
+              value: matrix[index][i],
               cordinate: {
                 x: index,
                 y: i
@@ -25,7 +26,7 @@ class Criteria extends React.Component {
             },
             secondOption: {
               name: criteria[i].name,
-              value: matrix[i][index].toFixed(2),
+              value: matrix[i][index],
               cordinate: {
                 x: i,
                 y: index
@@ -52,6 +53,7 @@ class Criteria extends React.Component {
               onChangeComparison={this.props.onChangeCriteriaWeigth}
             />
           )}
+          <Ghost />
         </div>
       </div>
     )

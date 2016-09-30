@@ -101,8 +101,22 @@ const CriteriaItem = (props) => {
     props.onChangeComparison(comparison)
   }
 
+  const getFirstOptionsValue = () => {
+    const {value} = props.comparison.firstOption
+    const firstOptionValue = value >= 1 ? value : `1/${props.comparison.secondOption.value}`
+
+    return firstOptionValue
+  }
+
+  const getSecondOptionsValue = () => {
+    const {value} = props.comparison.secondOption
+    const secondOptionValue = value >= 1 ? value : `1/${props.comparison.firstOption.value}`
+
+    return secondOptionValue
+  }
+
   return(
-    <Paper style={{flexGrow: 1, width: 400, margin: 20,}}>
+    <Paper style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flexGrow: 1, width: 400, margin: 20}}>
       <div style={{
           display: 'flex',
           padding: 20,
@@ -110,11 +124,11 @@ const CriteriaItem = (props) => {
         }}>
         <div style={{textAlign: 'left', width: '50%'}}>
           <strong>{props.comparison.firstOption.name}</strong>
-          <div>{props.comparison.firstOption.value}</div>
+          <div>{getFirstOptionsValue()}</div>
         </div>
         <div style={{textAlign: 'right', width: '50%'}}>
           <strong>{props.comparison.secondOption.name}</strong>
-          <div>{props.comparison.secondOption.value}</div>
+          <div>{getSecondOptionsValue()}</div>
         </div>
       </div>
       <div style={{paddingLeft: 10, paddingRight: 10}}>
