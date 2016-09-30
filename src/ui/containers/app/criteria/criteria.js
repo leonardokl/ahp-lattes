@@ -17,7 +17,7 @@ class Criteria extends React.Component {
           comparisons.push({
             firstOption: {
               name: criterion.name,
-              value: matrix[index][i],
+              value: matrix[index][i].toFixed(2),
               cordinate: {
                 x: index,
                 y: i
@@ -25,7 +25,7 @@ class Criteria extends React.Component {
             },
             secondOption: {
               name: criteria[i].name,
-              value: matrix[i][index],
+              value: matrix[i][index].toFixed(2),
               cordinate: {
                 x: i,
                 y: index
@@ -35,7 +35,7 @@ class Criteria extends React.Component {
         }
       }
     })
-    comparisons[0].secondOption.value = 2
+
     return comparisons
   }
 

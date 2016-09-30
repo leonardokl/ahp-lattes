@@ -91,8 +91,15 @@ export const updatePreference = ({index, cordinates, value}) => (dispatch) => {
   dispatch({type: 'UPDATE_PREFERENCE', index, cordinates, value})
 }
 
-export const updateCriteriaWeigth = (criteriaComparison) => (dispatch) => {
-  dispatch({type: 'UPDATE_CRITERIA_WEIGTH'})
+export const updateCriteriaWeigth = (criteriaComparison) => (dispatch, getState) => {
+  const criteriaWeightsMatrix = getState().criteriaWeigths.matrix
+  const {firstOption, secondOption} = criteriaComparison
+  let newCriteriaWeightsMatrix = [...criteriaWeightsMatrix]
+
+  newCriteriaWeightsMatrix[firstOption.cordinate.x][firstOption.cordinate.y] = firstOption.value
+  newCriteriaWeightsMatrix[secondOption.cordinate.x][secondOption.cordinate.y] = secondOption.value
+
+  dispatch({type: 'UPDATE_CRITERIA_WEIGTH', matrix: newCriteriaWeightsMatrix})
 }
 
 export const generateResults = () => (dispatch, getState) => {

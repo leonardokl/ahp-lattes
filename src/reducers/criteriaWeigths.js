@@ -6,6 +6,10 @@ const criteriaWeigths = (state = initialState, action) => {
   switch (action.type) {
     case 'CREATE_CRITERIA_WEIGTH_MATRIX':
       return {...state, matrix: action.matrix}
+    case 'UPDATE_CRITERIA_WEIGTH':
+      return {
+        ...state, matrix: action.matrix
+      }
   }
 
   return state
