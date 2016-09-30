@@ -120,16 +120,26 @@ const CriteriaItem = (props) => {
       <div style={{
           display: 'flex',
           padding: 20,
-          color: 'rgb(129, 117, 117)'
+          color: 'rgb(129, 117, 117)',
+          fontSize: 14
         }}>
-        <div style={{textAlign: 'left', width: '50%'}}>
+        <div style={{textAlign: 'center', width: '50%'}}>
           <strong>{props.comparison.firstOption.name}</strong>
-          <div>{getFirstOptionsValue()}</div>
         </div>
-        <div style={{textAlign: 'right', width: '50%'}}>
+        <div style={{textAlign: 'center', width: '50%'}}>
           <strong>{props.comparison.secondOption.name}</strong>
-          <div>{getSecondOptionsValue()}</div>
         </div>
+      </div>
+      <div
+        style={{
+        display: 'flex',
+        textAlign: 'center',
+        color: '#817575',
+        fontSize: 30,
+        padding: 10
+      }}>
+        <div style={{width: '50%'}}><strong>{getFirstOptionsValue()}</strong></div>
+        <div style={{width: '50%'}}><strong>{getSecondOptionsValue()}</strong></div>
       </div>
       <div style={{paddingLeft: 10, paddingRight: 10}}>
         <Slider
