@@ -3,6 +3,7 @@ import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import MenuItem from 'material-ui/MenuItem'
 import Toggle from 'material-ui/Toggle'
+import SidebarItem from './sidebar-item'
 import styles from './sidebar.scss'
 
 const Sidebar = (props) => (
@@ -10,36 +11,13 @@ const Sidebar = (props) => (
     <AppBar
       style={{backgroundColor: 'white'}}
       title='AHP Lattes'
-      titleStyle={{color: '#81797D'}}
+      titleStyle={{color: '#767676'}}
       showMenuIconButton={false}
     />
-    <div className={styles.togglesContainer}>
-      <Toggle
-        label='Todos'
-        defaultToggled
-        labelPosition="right"
-        className={styles.toggle}
-        labelStyle={{color: 'rgb(117, 117, 117)'}}
-      />
-      {props.items.map((item, index) =>
-        <Toggle
-          key={index}
-          label={item.name}
-          labelPosition="right"
-          className={styles.toggle}
-          labelStyle={{color: 'rgb(117, 117, 117)'}}
-        />
-      )}
-    </div>
+    <SidebarItem title="Home" onTouchTap={() => 1}/>
+    <SidebarItem title="Critérios" onTouchTap={() => 1}/>
+    <SidebarItem title="Sobre" onTouchTap={() => 1}/>
   </Drawer>
 )
 
-Sidebar.propTypes = {
-  items: React.PropTypes.array,
-}
-
-Sidebar.defaultProps = {
-  items: []
-}
-//<MenuItem key={index}>{item.name}</MenuItem>
 module.exports = Sidebar
