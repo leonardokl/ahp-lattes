@@ -20,10 +20,14 @@ const routes = {
         },
         {
           path: 'preferencias',
-          component: Criteria,
+          component: Preferences,
         },
         {
           path: 'criterios',
+          component: Criteria
+        },
+        {
+          path: 'sobre',
           component: Criteria
         }
       ]

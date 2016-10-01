@@ -25,20 +25,10 @@ const getTitle = (link) => {
 
 const Topbar = (props) => (
   <AppBar
-    title={getTitle(props.action.link)}
+    title={props.title}
     titleStyle={{paddingLeft: 215}}
     style={{position: 'fixed'}}
     showMenuIconButton={false}
-    iconElementRight={
-      (!props.disablePreferences || props.action.link == 'home') &&
-      <Link to={props.action.link}>
-        <RaisedButton
-          icon={getIcon(props.action.link)}
-          label={props.action.label}
-          style={{marginTop: '4px'}}
-        />
-      </Link>
-    }
   />
 )
 

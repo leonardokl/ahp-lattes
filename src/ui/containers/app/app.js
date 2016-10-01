@@ -21,7 +21,28 @@ class App extends React.Component {
       return {label:'Preferências', link: 'preferencias'}
     case 'preferencias':
     case '/preferencias':
+    case 'criterios':
+    case '/criterios':
       return {label: 'Voltar', link: 'home'}
+    }
+  }
+
+  getTopBarTitle() {
+    const {pathname} = this.props.location
+
+    switch(pathname) {
+    case 'home':
+    case '/home':
+      return 'Home'
+    case 'preferencias':
+    case '/preferencias':
+      return 'Preferências'
+    case 'criterios':
+    case '/criterios':
+      return 'Criterios'
+    case 'sobre':
+    case '/sobre':
+      return 'Sobre'
     }
   }
 
@@ -31,9 +52,13 @@ class App extends React.Component {
         <Topbar
           action={this.getTopBarAction()}
           disablePreferences={!!(this.props.app.alternatives.length < 2)}
+          title={this.getTopBarTitle()}
         />
         <div>
-          <Sidebar items={this.props.app.criteria}/>
+          <Sidebar
+            items={this.props.app.criteria}
+            onClickMenu={(item) => console.log('ITEM', item)}
+          />
           <div className={styles.childrenContainer}>
             {this.props.children}
           </div>
