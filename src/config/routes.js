@@ -28,7 +28,7 @@ const routes = {
         },
         {
           path: 'sobre',
-          component: Criteria
+          component: null
         }
       ]
     }

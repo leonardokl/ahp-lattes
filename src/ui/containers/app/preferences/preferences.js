@@ -5,11 +5,15 @@ import {withRouter} from 'react-router'
 import PreferencesItem from './preferences-item'
 
 class Preferences extends React.Component {
+  onChangePreferenceComparison() {
+
+  }
+
   render() {
     const {alternatives, preferences} = this.props.app
 
     return (
-      <div style={{margin: 20}}>
+      <div>
         {preferences.map((item, index) =>
           <PreferencesItem
             key={index}
@@ -29,8 +33,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onChangePreference: (options) => {
-    dispatch(actions.updatePreference(options))
+  onChangePreference: (comparison, index) => {
+    dispatch(actions.updatePreference(comparison, index))
   },
   onWillMount: () => {
     dispatch(actions.fetchCriteria())

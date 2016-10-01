@@ -87,8 +87,28 @@ export const generatePreferences = () => (dispatch, getState) => {
   dispatch(generateResults())
 }
 
-export const updatePreference = ({index, cordinates, value}) => (dispatch) => {
-  dispatch({type: 'UPDATE_PREFERENCE', index, cordinates, value})
+export const updatePreference = (comparison, index) => (dispatch) => {
+  const {firstOption, secondOption} = comparison
+
+  dispatch({
+    type: 'UPDATE_PREFERENCE',
+    index: index,
+    cordinates: {
+      x: firstOption.cordinate.x,
+      y: firstOption.cordinate.y
+    },
+    value: firstOption.value
+  })
+
+  dispatch({
+    type: 'UPDATE_PREFERENCE',
+    index: index,
+    cordinates: {
+      x: secondOption.cordinate.x,
+      y: secondOption.cordinate.y
+    },
+    value: secondOption.value
+  })
 }
 
 export const updateCriteriaWeigth = (criteriaComparison) => (dispatch, getState) => {
