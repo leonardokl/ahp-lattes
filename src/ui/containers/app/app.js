@@ -51,13 +51,13 @@ class App extends React.Component {
       <div>
         <Topbar
           action={this.getTopBarAction()}
-          disablePreferences={!!(this.props.app.alternatives.length < 2)}
+          disablePreferences={!!(this.props.alternatives.data.length < 2)}
           title={this.getTopBarTitle()}
         />
         <div>
           <Sidebar
-            items={this.props.app.criteria}
-            onClickMenu={(item) => console.log('ITEM', item)}
+            items={this.props.criteria.data}
+            onClickMenu={() => 1}
           />
           <div className={styles.childrenContainer}>
             {this.props.children}
@@ -67,7 +67,7 @@ class App extends React.Component {
           newAlternative={this.props.newAlternative}
           handleClose={this.props.onRequestCloseModal}
           onCreateAlternative={this.props.onCreateAlternative}
-          criteria={this.props.app.criteria}
+          criteria={this.props.criteria.data}
         />
       </div>
     )
@@ -75,7 +75,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  app: state.app,
+  alternatives: state.alternatives,
+  criteria: state.criteria,
   newAlternative: state.newAlternative,
 })
 

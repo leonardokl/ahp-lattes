@@ -13,21 +13,25 @@ import Results from './results'
 import styles from './home.scss'
 
 class App extends React.Component {
+  componentWillMount() {
+    this.props.onWillMount()
+  }
+
   render() {
-    const {alternatives, results} = this.props.app
+    const {alternatives} = this.props
 
     return (
       <div className={styles.container}>
-        {!alternatives.length ?
+        {!alternatives.data.length ?
           <AddAlternatives onClickAdicionar={this.props.onClickAdicionar}/> :
           [
             <Alternatives
               key={1}
-              alternatives={alternatives}
+              alternatives={alternatives.data}
               onClickRemoveAlternative={this.props.onClickRemoveAlternative}
               onClickAdicionar={this.props.onClickAdicionar}
             />,
-            <Results key={2} results={results}/>
+          <Results key={2} data={this.props.results.data}/>
           ]
         }
       </div>
@@ -36,18 +40,19 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  app: state.app,
+  alternatives: state.alternatives,
+  results: state.results
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  onClickRemoveAlternative: (index) => {console.log('onClickRemoveAlternative', index)
+  onWillMount: () => {
+    dispatch(actions.initHomePage())
+  },
+  onClickRemoveAlternative: (index) => {
     dispatch(actions.removeAlternative(index))
   },
   onClickAdicionar: () => {
     dispatch(actions.setNewAlternativeShowModal(true))
-  },
-  onWillMount: () => {
-    dispatch(actions.fetchCriteria())
   }
 })
 

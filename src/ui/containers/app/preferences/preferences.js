@@ -10,16 +10,16 @@ class Preferences extends React.Component {
   }
 
   render() {
-    const {alternatives, preferences} = this.props.app
+    const {alternatives} = this.props
 
     return (
       <div>
-        {preferences.map((item, index) =>
+        {this.props.preferences.data.map((item, index) =>
           <PreferencesItem
             key={index}
             preference={item}
             preferenceIndex={index}
-            alternatives={alternatives}
+            alternatives={alternatives.data}
             onChangePreferenceValue={this.props.onChangePreference}
           />
         )}
@@ -30,6 +30,7 @@ class Preferences extends React.Component {
 
 const mapStateToProps = (state) => ({
   app: state.app,
+  preferences: state.preferences
 })
 
 const mapDispatchToProps = (dispatch) => ({

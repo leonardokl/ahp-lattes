@@ -5,7 +5,7 @@ import Chart from 'ui/components/chart'
 import styles from './results.scss'
 
 const Results = (props) => {
-  if (!props.results.length) {
+  if (!props.data.length) {
     return (
       <Paper className={styles.container} zDepth={1}>
         <div className={styles.message}>Adicione mais uma alternativa para visualizar o resultado</div>
@@ -15,19 +15,19 @@ const Results = (props) => {
   return (
     <Paper className={styles.container} style={{paddingBottom: 20}} zDepth={1}>
       <div className={styles.message}>
-        {`${props.results[0].label} é a melhor escolha!`}
+        {`${props.data[0].label} é a melhor escolha!`}
       </div>
-      <Chart data={props.results}/>
+      <Chart data={props.data}/>
     </Paper>
   )
 }
 
 Results.propTypes = {
-  results: React.PropTypes.array,
+  data: React.PropTypes.array,
 }
 
 Results.defaultProps = {
-  results: []
+  data: []
 }
 
 module.exports = Results

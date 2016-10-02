@@ -53,6 +53,10 @@ export const fetchCriteria = () => (dispatch) => {
     })
 }
 
+export const initHomePage = () => (dispatch) => {
+
+}
+
 export const setNewAlternativeShowModal = (data) => (dispatch) => {
   dispatch({type: 'SET_NEW_ALTERNATIVE_SHOW_MODAL', data})
 }
@@ -70,7 +74,8 @@ export const createAlternative = (data) => (dispatch) => {
 
 export const generatePreferences = () => (dispatch, getState) => {
   const state = getState()
-  const {alternatives, criteria} = state.app
+  const alternatives = state.alternatives.data
+  const criteria = state.criteria.data
   let preferences = []
 
   if (alternatives.length < 2) {
@@ -124,7 +129,7 @@ export const updateCriteriaWeigth = (criteriaComparison) => (dispatch, getState)
 
 export const generateResults = () => (dispatch, getState) => {
   const state = getState()
-  const {alternatives} = state.app
+  const alternatives = state.alternatives.data
 
   if (alternatives.length < 2) {
     return dispatch({type: 'GENERATE_RESULTS', response: []})

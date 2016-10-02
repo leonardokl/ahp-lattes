@@ -20,7 +20,7 @@ class NewAlternativeModal extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.newAlternative.showModal !== this.props.newAlternative.showModal ||
-      nextProps.app.criteria !== this.props.app.criteria) {
+      nextProps.criteria.data !== this.props.criteria.data) {
       this.setState(this.initialState)
     }
   }
@@ -29,7 +29,7 @@ class NewAlternativeModal extends React.Component {
     return ({
       form: {
         name: '',
-        criteria: this.props.app.criteria.map((criterion) => {
+        criteria: this.props.criteria.data.map((criterion) => {
           criterion.value = ''
           return criterion
         })
@@ -113,6 +113,7 @@ class NewAlternativeModal extends React.Component {
 
 const mapStateToProps = (state) => ({
   app: state.app,
+  criteria: state.criteria,
   newAlternative: state.newAlternative,
 })
 
