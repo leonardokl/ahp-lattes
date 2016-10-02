@@ -10,11 +10,11 @@ class Preferences extends React.Component {
   }
 
   render() {
-    const {alternatives} = this.props
+    const {alternatives, preferences} = this.props
 
     return (
       <div>
-        {this.props.preferences.data.map((item, index) =>
+        {preferences.data.map((item, index) =>
           <PreferencesItem
             key={index}
             preference={item}
@@ -29,7 +29,7 @@ class Preferences extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  app: state.app,
+  alternatives: state.alternatives,
   preferences: state.preferences
 })
 

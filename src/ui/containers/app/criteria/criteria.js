@@ -16,7 +16,7 @@ import Ghost from './ghost'
 
 class Criteria extends React.Component {
   createComparisons = () => {
-    const {criteria} = this.props.app
+    const criteria = this.props.criteria.data
     const {matrix} = this.props.criteriaWeigths
     let comparisons = []
 
@@ -49,8 +49,6 @@ class Criteria extends React.Component {
   }
 
   render() {
-    const {criteria} = this.props.app
-
     return (
       <div style={{margin: 20}}>
         <div style={{display: 'flex', flexWrap: 'wrap'}}>
@@ -69,7 +67,7 @@ class Criteria extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  app: state.app,
+  criteria: state.criteria,
   criteriaWeigths: state.criteriaWeigths
 })
 

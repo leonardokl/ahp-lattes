@@ -46,7 +46,7 @@ class App extends React.Component {
     }
   }
 
-  render() {
+  render() {console.log('STATE', this.props.state);
     return (
       <div>
         <Topbar
@@ -74,7 +74,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({state: state,
   alternatives: state.alternatives,
   criteria: state.criteria,
   newAlternative: state.newAlternative,
