@@ -62,7 +62,7 @@ export const removeAlternative = (index) => (dispatch) => {
   dispatch(generatePreferences())
 }
 
-export const createAlternative = (data) => (dispatch) => {
+export const createAlternative = (data) => (dispatch) => {console.log('createAlternative', data);
   dispatch({type: 'CREATE_ALTERNATIVE', data})
   dispatch(generatePreferences())
 }
@@ -195,7 +195,7 @@ export const generateResults = () => (dispatch, getState) => {
 
     results.push(result)
   })
-
+  console.log('ALTERNATIVES', alternatives);
   console.log('CRITERIA', criteria)
   console.log('criteriaAverage', criteriaAverage)
   console.log('PREFERENCES', preferences)
