@@ -53,8 +53,60 @@ export const fetchCriteria = () => (dispatch) => {
     })
 }
 
-export const initHomePage = () => (dispatch) => {
+// return an array of sums
+const getAllColumnsSums = (matrix) => {
+  let sums = []
 
+  matrix.forEach((row, x) => {
+    let sum = 0
+
+    matrix.forEach((row, y) => (sum += matrix[y][x]))
+    sums.push(sum)
+  })
+
+  console.log('getAllColumnsSums', sums)
+  return sums
+}
+
+// return an array of sums
+const getAllRowsSums = (matrix) => {
+  let sums = []
+
+  matrix.forEach((row, x) => {
+    let sum = 0
+
+    matrix.forEach((row, y) => (sum += matrix[x][y]))
+    sums.push(sum)
+  })
+
+  console.log('getAllRowsSums', sums)
+  return sums
+}
+
+const divideMatrixItemsByCollumnSums = (matrix) => {
+  const collumnsSum = getAllColumnsSums(matrix)
+
+  return matrix.map((row) =>
+    row.map((item, index) => (item / collumnsSum[index]))
+  )
+}
+
+const getAverageMatrix = (matrix) => {
+  const matrixDivided = divideMatrixItemsByCollumnSums(matrix)
+  const rowsSum = getAllRowsSums(matrixDivided)
+
+  console.log('matrixDivided', matrixDivided);
+  return rowsSum
+}
+
+export const initHomePage = () => (dispatch, getState) => {
+  const criteria = getState().criteriaWeigths.matrix
+
+  if (criteria.length) {
+    console.log('CRITERIA', criteria)
+    const criteriaAverage = getAverageMatrix(criteria)
+    console.log('criteriaAverage', criteriaAverage)
+  }
 }
 
 export const setNewAlternativeShowModal = (data) => (dispatch) => {
