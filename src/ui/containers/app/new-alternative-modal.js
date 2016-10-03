@@ -21,7 +21,7 @@ class NewAlternativeModal extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.newAlternative.showModal !== this.props.newAlternative.showModal ||
       nextProps.criteria.data !== this.props.criteria.data) {console.log('componentWillReceiveProps');
-      if (nextProps.newAlternative.showModal) {
+      if (nextProps.newAlternative.showModal !== this.props.newAlternative.showModal) {console.log('initialState');
         this.setState(this.initialState)
       }
     }

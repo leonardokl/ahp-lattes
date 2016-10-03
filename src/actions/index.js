@@ -62,7 +62,7 @@ export const removeAlternative = (index) => (dispatch) => {
   dispatch(generatePreferences())
 }
 
-export const createAlternative = (data) => (dispatch) => {console.log('createAlternative', data);
+export const createAlternative = (data) => (dispatch) => {
   dispatch({type: 'CREATE_ALTERNATIVE', data})
   dispatch(generatePreferences())
 }
@@ -190,7 +190,7 @@ export const generateResults = () => (dispatch, getState) => {
     let result = 0
 
     preferencesAverages.forEach((row, y) => (
-      result += preferencesAverages[y][x] * criteriaAverage[y]
+      result += (preferencesAverages[y][x] * criteriaAverage[y]) + Number(alternatives[x].criteria[y].value)
     ))
 
     results.push(result)
