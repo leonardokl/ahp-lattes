@@ -53,62 +53,6 @@ export const fetchCriteria = () => (dispatch) => {
     })
 }
 
-// return an array of sums
-const getAllColumnsSums = (matrix) => {
-  let sums = []
-
-  matrix.forEach((row, x) => {
-    let sum = 0
-
-    matrix.forEach((row, y) => (sum += matrix[y][x]))
-    sums.push(sum)
-  })
-
-  console.log('getAllColumnsSums', sums)
-  return sums
-}
-
-// return an array of sums
-const getAllRowsSums = (matrix) => {
-  let sums = []
-
-  matrix.forEach((row, x) => {
-    let sum = 0
-
-    matrix.forEach((row, y) => (sum += matrix[x][y]))
-    sums.push(sum)
-  })
-
-  console.log('getAllRowsSums', sums)
-  return sums
-}
-
-const divideMatrixItemsByCollumnSums = (matrix) => {
-  const collumnsSum = getAllColumnsSums(matrix)
-
-  return matrix.map((row) =>
-    row.map((item, index) => (item / collumnsSum[index]))
-  )
-}
-
-const getAverageMatrix = (matrix) => {
-  const matrixDivided = divideMatrixItemsByCollumnSums(matrix)
-  const rowsSum = getAllRowsSums(matrixDivided)
-
-  console.log('matrixDivided', matrixDivided);
-  return rowsSum
-}
-
-export const initHomePage = () => (dispatch, getState) => {
-  const criteria = getState().criteriaWeigths.matrix
-
-  if (criteria.length) {
-    console.log('CRITERIA', criteria)
-    const criteriaAverage = getAverageMatrix(criteria)
-    console.log('criteriaAverage', criteriaAverage)
-  }
-}
-
 export const setNewAlternativeShowModal = (data) => (dispatch) => {
   dispatch({type: 'SET_NEW_ALTERNATIVE_SHOW_MODAL', data})
 }
@@ -179,13 +123,70 @@ export const updateCriteriaWeigth = (criteriaComparison) => (dispatch, getState)
   dispatch({type: 'UPDATE_CRITERIA_WEIGTH', matrix: newCriteriaWeightsMatrix})
 }
 
+
+// return an array of sums
+const getAllColumnsSums = (matrix) => {
+  let sums = []
+
+  matrix.forEach((row, x) => {
+    let sum = 0
+
+    matrix.forEach((row, y) => (sum += matrix[y][x]))
+    sums.push(sum)
+  })
+
+  console.log('getAllColumnsSums', sums)
+  return sums
+}
+
+// return an array of sums
+const getAllRowsSums = (matrix) => {
+  let sums = []
+
+  matrix.forEach((row, x) => {
+    let sum = 0
+
+    matrix.forEach((row, y) => (sum += matrix[x][y]))
+    sums.push(sum)
+  })
+
+  console.log('getAllRowsSums', sums)
+  return sums
+}
+
+const divideMatrixItemsByCollumnSums = (matrix) => {
+  const collumnsSum = getAllColumnsSums(matrix)
+
+  return matrix.map((row) =>
+    row.map((item, index) => (item / collumnsSum[index]))
+  )
+}
+
+const getAverageMatrix = (matrix) => {
+  const matrixDivided = divideMatrixItemsByCollumnSums(matrix)
+  const rowsSum = getAllRowsSums(matrixDivided)
+
+  console.log('matrixDivided', matrixDivided);
+  return rowsSum
+}
+
 export const generateResults = () => (dispatch, getState) => {
-  const state = getState()
-  const alternatives = state.alternatives.data
+  const criteria = getState().criteriaWeigths.matrix
+  const criteriaAverage = getAverageMatrix(criteria)
+  const alternatives = getState().alternatives.data
+  const preferences = getState().preferences.data
+  const preferencesAverages = preferences.map(preference =>
+    getAverageMatrix(preference.matrix)
+  )
 
   if (alternatives.length < 2) {
     return dispatch({type: 'GENERATE_RESULTS', response: []})
   }
+
+  console.log('CRITERIA', criteria)
+  console.log('criteriaAverage', criteriaAverage)
+  console.log('PREFERENCES', preferences)
+  console.log('PREFERENCES AVERAGES', preferencesAverages)
 
   return dispatch({
     type: 'GENERATE_RESULTS',
@@ -195,4 +196,8 @@ export const generateResults = () => (dispatch, getState) => {
       color: randomMC.getColor()
     }))
   })
+}
+
+export const initHomePage = () => (dispatch) => {
+  dispatch(generateResults())
 }
