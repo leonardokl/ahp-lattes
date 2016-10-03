@@ -171,28 +171,41 @@ const getAverageMatrix = (matrix) => {
 }
 
 export const generateResults = () => (dispatch, getState) => {
-  const criteria = getState().criteriaWeigths.matrix
-  const criteriaAverage = getAverageMatrix(criteria)
   const alternatives = getState().alternatives.data
-  const preferences = getState().preferences.data
-  const preferencesAverages = preferences.map(preference =>
-    getAverageMatrix(preference.matrix)
-  )
 
   if (alternatives.length < 2) {
     return dispatch({type: 'GENERATE_RESULTS', response: []})
   }
 
+  const criteria = getState().criteriaWeigths.matrix
+  const criteriaAverage = getAverageMatrix(criteria)
+
+  const preferences = getState().preferences.data
+  const preferencesAverages = preferences.map(preference =>
+    getAverageMatrix(preference.matrix)
+  )
+  let results = []
+
+  alternatives.forEach((row, x) => {
+    let result = 0
+
+    preferencesAverages.forEach((row, y) => (
+      result += preferencesAverages[y][x] * criteriaAverage[y]
+    ))
+
+    results.push(result)
+  })
+
   console.log('CRITERIA', criteria)
   console.log('criteriaAverage', criteriaAverage)
   console.log('PREFERENCES', preferences)
   console.log('PREFERENCES AVERAGES', preferencesAverages)
-
+  console.log('RESULTS', results)
   return dispatch({
     type: 'GENERATE_RESULTS',
-    response: alternatives.map(alternative => ({
-      label: alternative.name,
-      value: Math.floor(Math.random() * 9),
+    response: results.map((result, index) => ({
+      label: alternatives[index].name,
+      value: result,
       color: randomMC.getColor()
     }))
   })
