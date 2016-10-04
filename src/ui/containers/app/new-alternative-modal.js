@@ -20,8 +20,8 @@ class NewAlternativeModal extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.newAlternative.showModal !== this.props.newAlternative.showModal ||
-      nextProps.criteria.data !== this.props.criteria.data) {console.log('componentWillReceiveProps');
-      if (nextProps.newAlternative.showModal !== this.props.newAlternative.showModal) {console.log('initialState');
+      nextProps.criteria.data !== this.props.criteria.data) {
+      if (nextProps.newAlternative.showModal !== this.props.newAlternative.showModal) {
         this.setState(this.initialState)
       }
     }
@@ -60,10 +60,10 @@ class NewAlternativeModal extends React.Component {
   handleClickSalvar = () => {
     const form = {...this.state.form}
     const {criteria, name} = this.state.form
-console.log('handleClickSalvar', form);
-    if (criteria.every(this.hasValue) && name !== '') {
+
+    // if (criteria.every(this.hasValue) && name !== '') {
       this.props.onCreateAlternative(form)
-    }
+    // }
   }
 
   render() {

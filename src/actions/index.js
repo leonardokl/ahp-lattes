@@ -135,7 +135,7 @@ const getAllColumnsSums = (matrix) => {
     sums.push(sum)
   })
 
-  console.log('getAllColumnsSums', sums)
+
   return sums
 }
 
@@ -150,7 +150,7 @@ const getAllRowsSums = (matrix) => {
     sums.push(sum)
   })
 
-  console.log('getAllRowsSums', sums)
+
   return sums
 }
 
@@ -165,9 +165,9 @@ const divideMatrixItemsByCollumnSums = (matrix) => {
 const getAverageMatrix = (matrix) => {
   const matrixDivided = divideMatrixItemsByCollumnSums(matrix)
   const rowsSum = getAllRowsSums(matrixDivided)
+  const rowsAverage = rowsSum.map(sum => sum / matrix.length)
 
-  console.log('matrixDivided', matrixDivided);
-  return rowsSum
+  return rowsAverage
 }
 
 export const generateResults = () => (dispatch, getState) => {
@@ -179,28 +179,19 @@ export const generateResults = () => (dispatch, getState) => {
 
   const criteria = getState().criteriaWeigths.matrix
   const criteriaAverage = getAverageMatrix(criteria)
-
+console.log('criteriaAverage', criteriaAverage);
   const preferences = getState().preferences.data
   const preferencesAverages = preferences.map(preference =>
     getAverageMatrix(preference.matrix)
   )
-  let results = []
+console.log('preferencesAverages', preferencesAverages);
+  const multipliedPreferenceAverageByCriteriaAverage = preferencesAverages.map((preference, index) =>
+    preference.map((value, index) => value * criteriaAverage[index])
+  )
+  console.log('multipliedPreferenceAverageByCriteriaAverage', multipliedPreferenceAverageByCriteriaAverage);
+  const results = multipliedPreferenceAverageByCriteriaAverage.map(row => row.reduce((prev,current) => current + prev, 0))
 
-  alternatives.forEach((row, x) => {
-    let result = 0
-
-    preferencesAverages.forEach((row, y) => (
-      result += (preferencesAverages[y][x] * criteriaAverage[y]) + Number(alternatives[x].criteria[y].value)
-    ))
-
-    results.push(result)
-  })
-  console.log('ALTERNATIVES', alternatives);
-  console.log('CRITERIA', criteria)
-  console.log('criteriaAverage', criteriaAverage)
-  console.log('PREFERENCES', preferences)
-  console.log('PREFERENCES AVERAGES', preferencesAverages)
-  console.log('RESULTS', results)
+console.log('results', results);
   return dispatch({
     type: 'GENERATE_RESULTS',
     response: results.map((result, index) => ({
