@@ -61,9 +61,8 @@ class NewAlternativeModal extends React.Component {
     const form = {...this.state.form}
     const {criteria, name} = this.state.form
 
-    // if (criteria.every(this.hasValue) && name !== '') {
+    if (name !== '')
       this.props.onCreateAlternative(form)
-    // }
   }
 
   render() {
@@ -94,21 +93,6 @@ class NewAlternativeModal extends React.Component {
           value={this.state.form.name}
           onChange={(evt) => this.handleChangeName(evt.target.value)}
         />
-        {this.state.form.criteria.map((criterion, index) =>
-          [
-            <TextField
-              key={index}
-              style={{width: '100%'}}
-              floatingLabelText={criterion.name}
-              floatingLabelFixed={true}
-              type='number'
-              value={this.state.form.criteria[index].value}
-              onChange={(evt) => this.handleChangeCriterion(evt.target.value, index)}
-            />,
-            <br />
-          ]
-        )}
-
       </Dialog>
     )
   }
