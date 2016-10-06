@@ -184,14 +184,35 @@ console.log('criteriaAverage', criteriaAverage);
   const preferencesAverages = preferences.map(preference =>
     getAverageMatrix(preference.matrix)
   )
-console.log('preferencesAverages', preferencesAverages);
-  const multipliedPreferenceAverageByCriteriaAverage = preferencesAverages.map((preference, index) =>
-    preference.map((value, index) => value * criteriaAverage[index])
-  )
-  console.log('multipliedPreferenceAverageByCriteriaAverage', multipliedPreferenceAverageByCriteriaAverage);
-  const results = multipliedPreferenceAverageByCriteriaAverage.map(row => row.reduce((prev,current) => current + prev, 0))
 
-console.log('results', results);
+function sumArrays(arr1, arr2) {
+    let novoArray = [];
+
+    arr1.forEach((criterio, idx) => {
+      const soma = parseFloat(criterio) + parseFloat(arr2[idx]);
+      console.log('A', criterio);
+      console.log('arr2[idx]', arr2[idx]);
+      console.log('SOMAAAAAAAA', soma);
+      console.log('tyoe soma', typeof soma);
+      novoArray.push(parseFloat(soma.toFixed(4)));
+    })
+
+    return novoArray;
+}
+
+console.log('preferencesAverages', preferencesAverages);
+  const multipliedPreferenceAverageByCriteriaAverage = preferencesAverages.map(
+      (arr, index) => arr.map(value => value * criteriaAverage[index]));
+    console.log('multipliedPreferenceAverageByCriteriaAverage', multipliedPreferenceAverageByCriteriaAverage);
+
+    const initArray = alternatives.map(() => 0.0);
+    console.log('initArray', initArray);
+
+     const results = multipliedPreferenceAverageByCriteriaAverage.reduce(sumArrays , initArray);
+
+     console.log('results', results);
+
+
   return dispatch({
     type: 'GENERATE_RESULTS',
     response: results.map((result, index) => ({
