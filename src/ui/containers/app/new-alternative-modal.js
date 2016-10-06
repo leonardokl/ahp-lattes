@@ -87,6 +87,7 @@ class NewAlternativeModal extends React.Component {
         autoScrollBodyContent={true}
       >
         <TextField
+          autoFocus
           style={{width: '100%'}}
           floatingLabelText='Nome'
           floatingLabelFixed={true}
