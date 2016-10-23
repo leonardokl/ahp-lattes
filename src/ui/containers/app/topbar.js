@@ -5,13 +5,15 @@ import RaisedButton from 'material-ui/RaisedButton'
 import HardwareKeyboardArrowLeft from 'material-ui/svg-icons/navigation/arrow-back'
 import ActionSettings from 'material-ui/svg-icons/action/settings'
 
-const getIcon = (link) => {
-  switch (link) {
-  case 'home':
-    return (<HardwareKeyboardArrowLeft />)
-  case 'preferencias':
-    return (<ActionSettings />)
-  }
+const getIcon = (props) => {
+  if (props.title !== 'Home')
+    return (
+      <Link to='home' >
+        <RaisedButton
+          label='Ver resultado'
+        />
+      </Link>
+    )
 }
 
 const getTitle = (link) => {
@@ -29,6 +31,8 @@ const Topbar = (props) => (
     titleStyle={{paddingLeft: 215}}
     style={{position: 'fixed'}}
     showMenuIconButton={false}
+    iconElementRight={getIcon(props)}
+    iconStyleRight={{display: 'flex', alignItems: 'center', marginTop: 0, }}
   />
 )
 
