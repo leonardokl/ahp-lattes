@@ -61,7 +61,7 @@ class NewAlternativeModal extends React.Component {
     const form = {...this.state.form}
     const {criteria, name} = this.state.form
 
-    if (name !== '')
+    if (name.trim() !== '')
       this.props.onCreateAlternative(form)
   }
 

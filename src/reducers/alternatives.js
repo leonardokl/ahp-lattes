@@ -10,8 +10,6 @@ const alternatives = (state = initialState, action) => {
       ...state.data.slice(action.index + 1)
     ]}
   case 'CREATE_ALTERNATIVE':
-    console.log('CREATE_ALTERNATIVE', state);
-    console.log('CREATE_ALTERNATIVE_action', action.data);
     return {...state, data: [
       ...state.data,
       action.data

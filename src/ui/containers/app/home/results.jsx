@@ -5,7 +5,6 @@ import styles from './results.scss'
 import {ResultTable} from 'ui/components'
 
 const Results = (props) => {
-  console.log('props', props);
   const sortByDescValue = (array) => {
     return array.sort((a, b) => {
       if (a.value < b.value) {

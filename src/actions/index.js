@@ -179,7 +179,6 @@ export const generateResults = () => (dispatch, getState) => {
 
   const criteria = getState().criteriaWeigths.matrix
   const criteriaAverage = getAverageMatrix(criteria)
-console.log('criteriaAverage', criteriaAverage);
   const preferences = getState().preferences.data
   const preferencesAverages = preferences.map(preference =>
     getAverageMatrix(preference.matrix)
@@ -190,27 +189,20 @@ function sumArrays(arr1, arr2) {
 
     arr1.forEach((criterio, idx) => {
       const soma = parseFloat(criterio) + parseFloat(arr2[idx]);
-      console.log('A', criterio);
-      console.log('arr2[idx]', arr2[idx]);
-      console.log('SOMAAAAAAAA', soma);
-      console.log('tyoe soma', typeof soma);
+
       novoArray.push(parseFloat(soma.toFixed(4)));
     })
 
     return novoArray;
 }
 
-console.log('preferencesAverages', preferencesAverages);
   const multipliedPreferenceAverageByCriteriaAverage = preferencesAverages.map(
       (arr, index) => arr.map(value => value * criteriaAverage[index]));
-    console.log('multipliedPreferenceAverageByCriteriaAverage', multipliedPreferenceAverageByCriteriaAverage);
 
     const initArray = alternatives.map(() => 0.0);
-    console.log('initArray', initArray);
 
      const results = multipliedPreferenceAverageByCriteriaAverage.reduce(sumArrays , initArray);
 
-     console.log('results', results);
 
 
   return dispatch({

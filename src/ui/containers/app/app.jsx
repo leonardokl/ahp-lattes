@@ -46,7 +46,7 @@ class App extends React.Component {
     }
   }
 
-  render() {console.log('STATE', this.props.state);
+  render() {
     return (
       <div>
         <Topbar

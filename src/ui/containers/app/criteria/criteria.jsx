@@ -6,14 +6,6 @@ import {withRouter} from 'react-router'
 import CriteriaItem from './criteria-item'
 import Ghost from './ghost'
 
-// option model
-// name: "",
-// value: NaN,
-// cordinate: {
-//   x: NaN,
-//   y: NaN
-// }
-
 class Criteria extends React.Component {
   createComparisons = () => {
     const criteria = this.props.criteria.data

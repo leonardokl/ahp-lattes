@@ -3,13 +3,13 @@ import Paper from 'material-ui/Paper'
 import Slider from 'material-ui/Slider'
 
 const CriteriaItem = (props) => {
+  const getPercentage = x => (x * 100) / 9
+
   const getBiggestOption = () => {
     const {firstOption, secondOption} = props.comparison
 
-    if (firstOption.value > secondOption.value)
-      return 'firstOption'
-    if (secondOption.value > firstOption.value)
-      return 'secondOption'
+    if (firstOption.value > secondOption.value) return 'firstOption'
+    if (secondOption.value > firstOption.value) return 'secondOption'
   }
 
   const getSliderValue = () => {
@@ -114,7 +114,7 @@ const CriteriaItem = (props) => {
 
     return secondOptionValue
   }
-
+console.log('render', props)
   return(
     <Paper style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flexGrow: 1, width: 400, margin: 20}}>
       <div style={{

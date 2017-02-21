@@ -14,7 +14,7 @@ const Sidebar = (props) => (
       titleStyle={{color: '#767676'}}
       showMenuIconButton={false}
     />
-  <SidebarItem title="Home" link="home" onTouchTap={() => props.onClickMenu("home")}/>
+    <SidebarItem title="Home" link="home" onTouchTap={() => props.onClickMenu("home")}/>
     <SidebarItem title="Critérios" link="criterios" onTouchTap={() => props.onClickMenu("criterios")}/>
     <SidebarItem title="Preferências" link="preferencias" onTouchTap={() => props.onClickMenu("criterios")}/>
   </Drawer>

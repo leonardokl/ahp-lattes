@@ -18,7 +18,7 @@ const ResultTable = ({data}) => (
     </TableHeader>
     <TableBody>
       {data.map((data, index) =>
-      <Row {...data} displayBorder={index !== (data.length - 1)}/>
+        <Row {...data} key={index} displayBorder={index !== (data.length - 1)}/>
       )}
     </TableBody>
   </Table>
