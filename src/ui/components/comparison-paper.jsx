@@ -104,7 +104,7 @@ const ComparisonPaper = (props) => {
   const getFirstOptionsValue = () => {
     const {value} = props.comparison.firstOption
     const firstOptionValue = value >= 1 ? value : `1/${props.comparison.secondOption.value}`
-
+console.log('VALUE', value);
     return firstOptionValue
   }
 

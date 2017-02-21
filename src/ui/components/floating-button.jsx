@@ -14,7 +14,7 @@ const FloatingButton = (props) => (
 )
 
 FloatingButton.propTypes = {
-  onClick: React.PropTypes.func,
+  onClick: React.PropTypes.func
 }
 
 FloatingButton.defaultProps = {

@@ -30,7 +30,7 @@ module.exports = {
 
         loaders: [
             {test: /\.js$/, loader: 'babel', exclude: /node_modules/},
-            {test: /\.(es6|react)\.js$/, loader: 'babel'},
+            {test: /\.jsx$/, loader: 'babel', exclude: /node_modules/},
             {test: /\.css$/, loader: 'style!css!postcss'},
             {test: /\.json$/, loader: 'json'},
             {test: /\.svg$/, loader: 'babel!svg-react' },
@@ -55,7 +55,7 @@ module.exports = {
 
     resolve: {
         root: path.join(__dirname, 'src'),
-        extensions: ['', '.js', '.es6.js', '.react.js', '.react.es6.js'],
+        extensions: ['', '.js', '.jsx'],
         modulesDirectories: ['node_modules', './src'],
     },
 

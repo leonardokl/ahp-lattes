@@ -1,10 +1,11 @@
 import React from 'react'
 import Paper from 'material-ui/Paper'
-
 import Chart from 'ui/components/chart'
 import styles from './results.scss'
+import {ResultTable} from 'ui/components'
 
 const Results = (props) => {
+  console.log('props', props);
   const sortByDescValue = (array) => {
     return array.sort((a, b) => {
       if (a.value < b.value) {
@@ -20,7 +21,6 @@ const Results = (props) => {
   }
 
   const getMessage = () => {
-
     const results = sortByDescValue(props.data)
 
     if (results[0].value === results[1].value) {
@@ -40,16 +40,13 @@ const Results = (props) => {
 
   return (
     <Paper className={styles.container} style={{paddingBottom: 20}} zDepth={1}>
-      <div className={styles.message}>
-        {getMessage()}
-      </div>
-      <Chart data={props.data}/>
+      <ResultTable data={sortByDescValue(props.data)}/>
     </Paper>
   )
 }
 
 Results.propTypes = {
-  data: React.PropTypes.array,
+  data: React.PropTypes.array
 }
 
 Results.defaultProps = {

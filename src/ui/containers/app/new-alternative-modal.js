@@ -65,6 +65,10 @@ class NewAlternativeModal extends React.Component {
       this.props.onCreateAlternative(form)
   }
 
+  handleKeyPress = ({key}) => key === 'Enter'
+    ? this.handleClickSalvar()
+    : null
+
   render() {
     return (
       <Dialog
@@ -93,6 +97,7 @@ class NewAlternativeModal extends React.Component {
           floatingLabelFixed={true}
           value={this.state.form.name}
           onChange={(evt) => this.handleChangeName(evt.target.value)}
+          onKeyPress={this.handleKeyPress}
         />
       </Dialog>
     )

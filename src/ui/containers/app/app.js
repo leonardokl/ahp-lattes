@@ -30,19 +30,19 @@ class App extends React.Component {
   getTopBarTitle() {
     const {pathname} = this.props.location
 
-    switch(pathname) {
-    case 'home':
-    case '/home':
-      return 'Home'
-    case 'preferencias':
-    case '/preferencias':
-      return 'Preferências'
-    case 'criterios':
-    case '/criterios':
-      return 'Criterios'
-    case 'sobre':
-    case '/sobre':
-      return 'Sobre'
+    switch (pathname) {
+      case 'home':
+      case '/home':
+        return 'Home'
+      case 'preferencias':
+      case '/preferencias':
+        return 'Preferências'
+      case 'criterios':
+      case '/criterios':
+        return 'Criterios'
+      case 'sobre':
+      case '/sobre':
+        return 'Sobre'
     }
   }
 
@@ -77,7 +77,7 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({state: state,
   alternatives: state.alternatives,
   criteria: state.criteria,
-  newAlternative: state.newAlternative,
+  newAlternative: state.newAlternative
 })
 
 const mapDispatchToProps = (dispatch) => ({
